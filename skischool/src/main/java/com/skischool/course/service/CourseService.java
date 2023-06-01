@@ -15,14 +15,19 @@ public class CourseService {
         this.courseManagement = courseManagement;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Course> getAllCourses() {
         return courseManagement.getAllCourses();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Course addCourse(@RequestBody Course course) {
         return courseManagement.addCourse(course);
+    }
+
+    @GetMapping("/{id}")
+    public Course getCourseById(@PathVariable Long id) {
+        return courseManagement.getCourseById(id);
     }
 
     // other REST endpoints...
