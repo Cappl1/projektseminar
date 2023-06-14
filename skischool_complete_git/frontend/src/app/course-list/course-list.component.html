@@ -1,0 +1,10 @@
+<p>course-list works!</p>
+<p> should display a ul with all courses</p>
+<ul>
+    <li *ngFor="let course of courses" (click)="onCourseClick(course.id)">
+      {{ course.name }}
+      
+    </li>
+</ul>
+
+  <p>did it?</p>

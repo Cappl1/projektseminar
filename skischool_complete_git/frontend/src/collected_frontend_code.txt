@@ -1,0 +1,739 @@
+
+===== Contents of file: styles.css =====
+
+/* You can add global styles to this file, and also import other style files */
+
+
+
+===== Contents of file: app.component.css =====
+
+
+
+
+===== Contents of file: course-details.component.css =====
+
+
+
+
+===== Contents of file: course-list.component.css =====
+
+
+
+
+===== Contents of file: register.component.css =====
+
+
+
+
+===== Contents of file: unregister.component.css =====
+
+
+
+
+===== Contents of file: user-courses.component.css =====
+
+
+
+
+===== Contents of file: main.ts =====
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+
+
+
+===== Contents of file: app-routing.module.ts =====
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CourseListComponent } from './course-list/course-list.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
+import { RegisterComponent } from './register/register.component';
+import { UserCoursesComponent } from './user-courses/user-courses.component';
+import { UnregisterComponent } from './unregister/unregister.component';
+
+// Here we define the routes for our application, so that when the user navigates to a certain URL, the corresponding component is loaded.
+//The :id in the path is a placeholder for a specific course ID. When navigating to a route with a specific ID, that ID is available for the component to use (for example, to fetch the details of the course).
+const routes: Routes = [
+  { path: '', redirectTo: '/course-list', pathMatch: 'full' },
+  { path: 'course-list', component: CourseListComponent },
+  { path: 'course-list/course-details/:id', component: CourseDetailsComponent },
+  { path: 'course-list/course-details/register/:id', component: RegisterComponent },
+  { path: 'user-courses', component: UserCoursesComponent },
+  { path: 'unregister/:id', component: UnregisterComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+
+===== Contents of file: app.component.spec.ts =====
+
+import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
+  });
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'SkiSchoolApp'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('SkiSchoolApp');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.content span')?.textContent).toContain('SkiSchoolApp app is running!');
+  });
+});
+
+
+
+===== Contents of file: app.component.ts =====
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'SkiSchoolApp';
+}
+
+
+
+===== Contents of file: app.module.ts =====
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CourseListComponent } from './course-list/course-list.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
+import { RegisterComponent } from './register/register.component';
+import { UserCoursesComponent } from './user-courses/user-courses.component';
+import { UnregisterComponent } from './unregister/unregister.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CourseListComponent,
+    CourseDetailsComponent,
+    RegisterComponent,
+    UserCoursesComponent,
+    UnregisterComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+===== Contents of file: course-details.component.spec.ts =====
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CourseDetailsComponent } from './course-details.component';
+
+describe('CourseDetailsComponent', () => {
+  let component: CourseDetailsComponent;
+  let fixture: ComponentFixture<CourseDetailsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ CourseDetailsComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(CourseDetailsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+
+===== Contents of file: course-details.component.ts =====
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from '../models/course';
+import { CourseService } from '../services/course.service';
+
+@Component({
+  selector: 'app-course-details',
+  templateUrl: './course-details.component.html',
+  styleUrls: ['./course-details.component.css']
+})
+export class CourseDetailsComponent implements OnInit {
+  course!: Course;
+
+  constructor(
+    private route: ActivatedRoute,
+    private courseService: CourseService
+  ) { }
+
+  ngOnInit(): void {
+    const courseId = Number(this.route.snapshot.paramMap.get('id'));
+    this.courseService.getCourse(courseId).subscribe(course => {
+      this.course = course;
+    });
+  }
+
+  getCourse(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    
+    if (id === null) {
+      console.log("No 'id' parameter in the route");
+      // handle the case when id is null here
+      return;
+    }
+  
+    const numId = +id;
+    this.courseService.getCourse(numId)
+      .subscribe(course => this.course = course);
+  }
+  
+  
+}
+
+
+
+===== Contents of file: course-list.component.spec.ts =====
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CourseListComponent } from './course-list.component';
+import { CourseService } from '../services/course.service';
+import { of } from 'rxjs';
+
+describe('CourseListComponent', () => {
+  let component: CourseListComponent;
+  let fixture: ComponentFixture<CourseListComponent>;
+  let courseService: CourseService;
+
+  beforeEach(() => {
+    const courseServiceMock = {
+      getCourses: jasmine.createSpy('getCourses').and.returnValue(of([{ id: 1, title: 'Test Course', description: 'Test Description' }]))
+    };
+
+    TestBed.configureTestingModule({
+      declarations: [ CourseListComponent ],
+      providers: [
+        { provide: CourseService, useValue: courseServiceMock }
+      ]
+    });
+
+    fixture = TestBed.createComponent(CourseListComponent);
+    component = fixture.componentInstance;
+    courseService = TestBed.inject(CourseService);
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should call getCourses on CourseService', () => {
+    component.ngOnInit();
+    expect(courseService.getCourses).toHaveBeenCalled();
+  });
+});
+
+
+
+===== Contents of file: course-list.component.ts =====
+
+import { Component, OnInit } from '@angular/core';
+import { Course } from '../models/course';
+import { CourseService } from '../services/course.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
+
+
+@Component({
+  selector: 'app-course-list',
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.css'],
+  providers: [{ provide: CourseService, useClass: CourseService }]
+})
+export class CourseListComponent implements OnInit {
+  courses?: Course[];
+
+  constructor(private courseService: CourseService,
+              private router: Router,
+              private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.getCourses();
+  }
+
+  getCourses(): void {
+    this.courseService.getCourses()
+      .subscribe(courses => {
+        this.courses = courses;
+        console.log(this.courses); // Log the courses array to the console
+      });
+  }
+
+  onCourseClick(courseId: number) {
+    this.router.navigate(['course-details', courseId], { relativeTo: this.route });
+  }
+
+  onRegisterClick(courseId: number) {
+    this.router.navigate(['register', courseId]);
+  }
+}
+
+
+===== Contents of file: course.ts =====
+
+export interface Course {
+    id: number;
+    name: string;
+    description: string;
+    duration: number;
+    time: string;
+    // add other properties as necessary
+  }
+  
+
+
+===== Contents of file: user.ts =====
+
+export interface User {
+    id: number;
+    username: string;
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+
+    // add other properties as necessary
+  }
+  
+
+
+===== Contents of file: register.component.spec.ts =====
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RegisterComponent } from './register.component';
+
+describe('RegisterComponent', () => {
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ RegisterComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(RegisterComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+
+===== Contents of file: register.component.ts =====
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
+
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
+})
+export class RegisterComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) { }
+
+  ngOnInit(): void {
+    this.register();
+  }
+
+  register(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+  
+    if (id === null) {
+      console.log("No 'id' parameter in the route");
+      // handle the case when id is null here
+      return;
+    }
+  
+    const numId = +id;
+    // Here we assume you already have the user information. 
+    // If not, you should create a form to get user information from the user.
+    const user = {id: 1, email: 'test@example.com', username: 'testuser', password: 'password', firstName: 'Test', lastName: 'User'};
+    this.userService.register(user, numId)
+      .subscribe(response => {
+        // handle response here
+      });
+  }
+  
+}
+
+
+
+===== Contents of file: course.service.spec.ts =====
+
+import { TestBed } from '@angular/core/testing';
+
+import { CourseService } from './course.service';
+
+describe('CourseService', () => {
+  let service: CourseService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(CourseService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
+
+
+
+===== Contents of file: course.service.ts =====
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Course } from '../models/course';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+//IMPORTANT: Please replace the URLs with the actual endpoints of your Spring Boot application
+
+export class CourseService {
+  private courseUrl = 'http://localhost:8080/courses'; // URL to your Spring Boot application
+
+  constructor(private http: HttpClient) { }
+
+  getCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.courseUrl);
+  }
+
+  getCourse(id: number): Observable<Course> {
+    const url = `${this.courseUrl}/${id}`;
+    return this.http.get<Course>(url);
+  }
+}
+
+
+
+===== Contents of file: user.service.spec.ts =====
+
+import { TestBed } from '@angular/core/testing';
+
+import { UserService } from './user.service';
+
+describe('UserService', () => {
+  let service: UserService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(UserService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
+
+
+
+===== Contents of file: user.service.ts =====
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import { Course } from '../models/course';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+//IMPORTANT: Please replace the URLs with the actual endpoints of your Spring Boot application
+
+export class UserService {
+  private userUrl = 'http://localhost:8080/members/'; // URL to your Spring Boot application
+
+  constructor(private http: HttpClient) { }
+
+  register(user: User, courseId: number): Observable<User> {
+    const url = `${this.userUrl}/${user.id}/courses/${courseId}`;
+    return this.http.post<User>(url, user);
+  }
+
+  getCourses(user: User): Observable<Course[]> {
+    const url = `${this.userUrl}/${user.id}/courses`;
+    return this.http.get<Course[]>(url);
+  }
+
+  unregister(user: User, courseId: number): Observable<User> {
+    const url = `${this.userUrl}/${user.id}/courses/${courseId}`;
+    return this.http.delete<User>(url);
+  }
+}
+
+
+
+
+===== Contents of file: unregister.component.spec.ts =====
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { UnregisterComponent } from './unregister.component';
+
+describe('UnregisterComponent', () => {
+  let component: UnregisterComponent;
+  let fixture: ComponentFixture<UnregisterComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ UnregisterComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(UnregisterComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+
+===== Contents of file: unregister.component.ts =====
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
+
+@Component({
+  selector: 'app-unregister',
+  templateUrl: './unregister.component.html',
+  styleUrls: ['./unregister.component.css']
+})
+export class UnregisterComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) { }
+
+  ngOnInit(): void {
+    this.unregister();
+  }
+
+  unregister(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+  
+    if (id === null) {
+      console.log("No 'id' parameter in the route");
+      // handle the case when id is null here
+      return;
+    }
+  
+    const numId = +id;
+    // Here we assume you already have the user information. 
+    // If not, you should create a form to get user information from the user.
+    const user = {id: 1, email: 'test@example.com', username: 'testuser', password: 'password', firstName: 'Test', lastName: 'User'};
+    this.userService.unregister(user, numId)
+      .subscribe(response => {
+        // handle response here
+      });
+  }
+  
+}
+
+
+
+===== Contents of file: user-courses.component.spec.ts =====
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { UserCoursesComponent } from './user-courses.component';
+
+describe('UserCoursesComponent', () => {
+  let component: UserCoursesComponent;
+  let fixture: ComponentFixture<UserCoursesComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ UserCoursesComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(UserCoursesComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+
+
+
+===== Contents of file: user-courses.component.ts =====
+
+import { Component, OnInit } from '@angular/core';
+import { Course } from '../models/course';
+import { UserService } from '../services/user.service';
+
+@Component({
+  selector: 'app-user-courses',
+  templateUrl: './user-courses.component.html',
+  styleUrls: ['./user-courses.component.css']
+})
+export class UserCoursesComponent implements OnInit {
+  courses: Course[] = [];
+
+  constructor(private userService: UserService) { }
+
+  ngOnInit(): void {
+    this.getCourses();
+  }
+
+  getCourses(): void {
+    const user = {id: 1, email: 'test@example.com', username: 'testuser', password: 'password', firstName: 'Test', lastName: 'User' }; // Assuming you have the user information.
+    this.userService.getCourses(user)
+      .subscribe(courses => this.courses = courses);
+  }
+}
+
+
+
+===== Contents of file: index.html =====
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SkiSchoolApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+
+
+
+===== Contents of file: app.component.html =====
+
+<p>Hello World!</p>
+<router-outlet></router-outlet>
+
+
+
+===== Contents of file: course-details.component.html =====
+
+<p>course-details works!</p>
+
+
+<div *ngIf="course">
+    <h2>{{ course.name }}</h2>
+    <p>{{ course.description }}</p>
+    <p>ID: {{ course.id }}</p>
+
+  </div>
+
+
+===== Contents of file: course-list.component.html =====
+
+<p>course-list works!</p>
+<p> should display a ul with all courses</p>
+<ul>
+    <li *ngFor="let course of courses" (click)="onCourseClick(course.id)">
+      {{ course.name }}
+      
+    </li>
+</ul>
+
+  <p>did it?</p>
+
+
+===== Contents of file: register.component.html =====
+
+<p>register works!</p>
+
+
+
+===== Contents of file: unregister.component.html =====
+
+<p>unregister works!</p>
+
+
+
+===== Contents of file: user-courses.component.html =====
+
+<p>user-courses works!</p>
+
+
