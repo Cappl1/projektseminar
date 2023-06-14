@@ -1,3 +1,3 @@
 # projektseminar
 
-Status: Jeder entwickelt drauf los
+MVP zu einer hypothetischen Skischule
