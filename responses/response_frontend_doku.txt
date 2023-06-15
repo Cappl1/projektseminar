@@ -1,0 +1,88 @@
+General Overview:
+The goal of this project is to create a Ski School application using Angular. The application allows users to view a list of available courses, access detailed information about each course, register for a course, and view a list of courses they have registered for. The application also includes functionality to unregister from a course.
+
+Main Components:
+1. app: This directory contains the main components and modules of the application.
+2. course-details: This component is responsible for displaying detailed information about a specific course.
+3. course-list: This component displays a list of available courses for the user to choose from.
+4. models: This directory contains the interfaces for the Course and User objects.
+5. register: This component handles the registration process for a user to enroll in a course.
+6. services: This directory contains service files for handling API calls related to courses and users.
+7. unregister: This component handles the process of unregistering from a course.
+8. user-courses: This component displays a list of courses that a user has registered for.
+
+File Descriptions:
+
+1. app-routing.module.ts: This file defines the routes for the application, mapping URLs to the corresponding component to be loaded.
+2. app.component.css: This file contains the CSS styles for the app component.
+3. app.component.html: This file contains the HTML template for the app component.
+4. app.component.spec.ts: This file contains unit tests for the app component.
+5. app.component.ts: This file contains the logic and functionality for the app component.
+6. app.module.ts: This file is the main module of the application, where all the components and modules are declared and imported.
+7. course-details.component.css: This file contains the CSS styles for the course-details component.
+8. course-details.component.html: This file contains the HTML template for the course-details component.
+9. course-details.component.spec.ts: This file contains unit tests for the course-details component.
+10. course-details.component.ts: This file contains the logic and functionality for the course-details component.
+11. course-list.component.css: This file contains the CSS styles for the course-list component.
+12. course-list.component.html: This file contains the HTML template for the course-list component.
+13. course-list.component.spec.ts: This file contains unit tests for the course-list component.
+14. course-list.component.ts: This file contains the logic and functionality for the course-list component.
+15. course.ts: This file defines the Course interface, which represents a course object.
+16. user.ts: This file defines the User interface, which represents a user object.
+17. register.component.css: This file contains the CSS styles for the register component.
+18. register.component.html: This file contains the HTML template for the register component.
+19. register.component.spec.ts: This file contains unit tests for the register component.
+20. register.component.ts: This file contains the logic and functionality for the register component.
+21. course.service.spec.ts: This file contains unit tests for the course service.
+22. course.service.ts: This file contains the implementation of the course service, which handles API calls related to courses.
+23. user.service.spec.ts: This file contains unit tests for the user service.
+24. user.service.ts: This file contains the implementation of the user service, which handles API calls related to users.
+25. unregister.component.css: This file contains the CSS styles for the unregister component.
+26. unregister.component.html: This file contains the HTML template for the unregister component.
+27. unregister.component.spec.ts: This file contains unit tests for the unregister component.
+28. unregister.component.ts: This file contains the logic and functionality for the unregister component.
+29. user-courses.component.css: This file contains the CSS styles for the user-courses component.
+30. user-courses.component.html: This file contains the HTML template for the user-courses component.
+31. user-courses.component.spec.ts: This file contains unit tests for the user-courses component.
+32. user-courses.component.ts: This file contains the logic and functionality for the user-courses component.
+33. styles.css: This file contains global CSS styles for the application.
+34. main.ts: This file is the entry point of the application, where the AppModule is bootstrapped.
+35. index.html: This file is the main HTML file for the application.
+36. app-routing.module.ts (commented version): Commented version of the app-routing.module.ts file.
+37. app.component.css (commented version): Commented version of the app.component.css file.
+38. app.component.html (commented version): Commented version of the app.component.html file.
+39. app.component.spec.ts (commented version): Commented version of the app.component.spec.ts file.
+40. app.component.ts (commented version): Commented version of the app.component.ts file.
+41. app.module.ts (commented version): Commented version of the app.module.ts file.
+42. course-details.component.css (commented version): Commented version of the course-details.component.css file.
+43. course-details.component.html (commented version): Commented version of the course-details.component.html file.
+44. course-details.component.spec.ts (commented version): Commented version of the course-details.component.spec.ts file.
+45. course-details.component.ts (commented version): Commented version of the course-details.component.ts file.
+46. course-list.component.css (commented version): Commented version of the course-list.component.css file.
+47. course-list.component.html (commented version): Commented version of the course-list.component.html file.
+48. course-list.component.spec.ts (commented version): Commented version of the course-list.component.spec.ts file.
+49. course-list.component.ts (commented version): Commented version of the course-list.component.ts file.
+50. course.ts (commented version): Commented version of the course.ts file.
+51. user.ts (commented version): Commented version of the user.ts file.
+52. register.component.css (commented version): Commented version of the register.component.css file.
+53. register.component.html (commented version): Commented version of the register.component.html file.
+54. register.component.spec.ts (commented version): Commented version of the register.component.spec.ts file.
+55. register.component.ts (commented version): Commented version of the register.component.ts file.
+56. course.service.spec.ts (commented version): Commented version of the course.service.spec.ts file.
+57. course.service.ts (commented version): Commented version of the course.service.ts file.
+58. user.service.spec.ts (commented version): Commented version of the user.service.spec.ts file.
+59. user.service.ts (commented version): Commented version of the user.service.ts file.
+60. unregister.component.css (commented version): Commented version of the unregister.component.css file.
+61. unregister.component.html (commented version): Commented version of the unregister.component.html file.
+62. unregister.component.spec.ts (commented version): Commented version of the unregister.component.spec.ts file.
+63. unregister.component.ts (commented version): Commented version of the unregister.component.ts file.
+64. user-courses.component.css (commented version): Commented version of the user-courses.component.css file.
+65. user-courses.component.html (commented version): Commented version of the user-courses.component.html file.
+66. user-courses.component.spec.ts (commented version): Commented version of the user-courses.component.spec.ts file.
+67. user-courses.component.ts (commented version): Commented version of the user-courses.component.ts file.
+68. styles.css (commented version): Commented version of the styles.css file.
+69. main.ts (commented version): Commented version of the main.ts file.
+70. index.html (commented version): Commented version of the index.html file.
+71. app.component.html (commented version): Commented version of the app.component.html file.
+
+Please let me know if you have any questions or if there's anything else I can help with.

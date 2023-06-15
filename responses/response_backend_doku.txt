@@ -1,0 +1,44 @@
+General Overview:
+The goal of this project is to create a backend system for a ski school application. The main components of the project include the following:
+
+1. SkischoolApplication.java:
+   - This file is the main entry point for the application. It initializes the Spring Boot application and sets up the necessary configurations.
+
+2. Course:
+   - This package contains the domain, logic, and service components for managing courses.
+   - Course.java: This class represents a course entity, which includes properties such as id, name, description, duration, and time.
+   - CourseRepository.java: This interface extends the CrudRepository interface and provides methods for CRUD operations on the Course entity.
+   - CourseManagement.java: This class contains the business logic for managing courses, such as retrieving all courses and adding a new course.
+   - CourseService.java: This REST controller class provides endpoints for accessing and manipulating course data.
+
+3. Member:
+   - This package contains the domain, logic, and service components for managing members.
+   - Member.java: This class represents a member entity, which includes properties such as id, username, password, first name, last name, and email.
+   - MemberRepository.java: This interface extends the JpaRepository interface and provides methods for CRUD operations on the Member entity.
+   - MemberManagement.java: This class contains the business logic for managing members, such as retrieving all members and creating a new member.
+   - MemberService.java: This REST controller class provides endpoints for accessing and manipulating member data.
+
+4. Registration:
+   - This package contains the domain, logic, and service components for managing course registrations.
+   - CourseRegistration.java: This class represents a course registration entity, which includes properties such as id, member, and course.
+   - CourseRegistrationRepository.java: This interface extends the JpaRepository interface and provides methods for CRUD operations on the CourseRegistration entity.
+   - CourseRegistrationManagement.java: This class contains the business logic for managing course registrations, such as retrieving all registrations and registering a member for a course.
+   - CourseRegistrationService.java: This REST controller class provides endpoints for accessing and manipulating course registration data.
+
+File Comments:
+- SkischoolApplication.java: This file contains the main class of the application, which initializes the Spring Boot application and sets up CORS configuration.
+- Course.java: This file defines the Course entity class with its properties and getters/setters.
+- CourseRepository.java: This file defines the CourseRepository interface, which extends the CrudRepository interface for CRUD operations on Course entities.
+- CourseManagement.java: This file defines the CourseManagement class, which contains the business logic for managing courses, such as retrieving all courses and adding a new course.
+- CourseService.java: This file defines the CourseService class, which provides REST endpoints for accessing and manipulating course data.
+- Member.java: This file defines the Member entity class with its properties and getters/setters.
+- MemberRepository.java: This file defines the MemberRepository interface, which extends the JpaRepository interface for CRUD operations on Member entities.
+- MemberManagement.java: This file defines the MemberManagement class, which contains the business logic for managing members, such as retrieving all members and creating a new member.
+- MemberService.java: This file defines the MemberService class, which provides REST endpoints for accessing and manipulating member data.
+- CourseRegistration.java: This file defines the CourseRegistration entity class with its properties and getters/setters.
+- CourseRegistrationRepository.java: This file defines the CourseRegistrationRepository interface, which extends the JpaRepository interface for CRUD operations on CourseRegistration entities.
+- CourseRegistrationManagement.java: This file defines the CourseRegistrationManagement class, which contains the business logic for managing course registrations, such as retrieving all registrations and registering a member for a course.
+- CourseRegistrationService.java: This file defines the CourseRegistrationService class, which provides REST endpoints for accessing and manipulating course registration data.
+- SkischoolApplicationTests.java: This file contains test cases to ensure that the application context loads properly.
+
+Overall, this project follows a layered architecture approach, with separate packages for domain, logic, and service components. It uses Spring JPA for database operations and Spring MVC for handling REST requests. The main goal is to provide a backend system for managing courses, members, and course registrations in a ski school application.

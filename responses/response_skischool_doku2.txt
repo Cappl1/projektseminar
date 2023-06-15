@@ -1,0 +1,141 @@
+Overview:
+
+The goal of this project is to create a web application for a skiing school. The application allows users to view and register for available ski courses. The frontend of the application is implemented using Angular, while the backend is implemented using Spring Boot and Java. The frontend provides various components for displaying course details, registering for courses, and managing user courses. The backend provides RESTful APIs for retrieving and manipulating course, member, and registration data.
+
+Components:
+
+1. Frontend:
+- app: This directory contains the main components and modules of the Angular application.
+- course-details: This component is responsible for displaying the details of a specific course.
+- course-list: This component displays a list of available courses.
+- models: This directory contains the interfaces for the Course and User data models.
+- register: This component is responsible for registering a user for a specific course.
+- services: This directory contains the Angular services for fetching course and user data.
+- unregister: This component allows a user to unregister from a course.
+- user-courses: This component displays the courses that a user has registered for.
+
+2. Backend:
+- main: This directory contains the main files for the Spring Boot application.
+- course: This package contains the domain, logic, and service classes for managing courses.
+- member: This package contains the domain, logic, and service classes for managing members.
+- registration: This package contains the domain, logic, and service classes for managing course registrations.
+
+File Descriptions:
+
+1. Styles.css: This file contains global styles for the Angular application.
+
+2. App.component.css: This file contains component-specific styles for the App component.
+
+3. Course-details.component.css: This file contains component-specific styles for the Course-details component.
+
+4. Course-list.component.css: This file contains component-specific styles for the Course-list component.
+
+5. Register.component.css: This file contains component-specific styles for the Register component.
+
+6. Unregister.component.css: This file contains component-specific styles for the Unregister component.
+
+7. User-courses.component.css: This file contains component-specific styles for the User-courses component.
+
+8. Main.ts: This file is the entry point of the Angular application. It bootstraps the AppModule.
+
+9. App-routing.module.ts: This file defines the routing configuration for the Angular application. It maps URLs to corresponding components.
+
+10. App.component.spec.ts: This file contains unit tests for the AppComponent.
+
+11. App.component.ts: This file is the main component of the Angular application. It defines the title property and the template for the App component.
+
+12. App.module.ts: This file is responsible for importing and configuring the required modules and components for the Angular application.
+
+13. Course-details.component.spec.ts: This file contains unit tests for the CourseDetailsComponent.
+
+14. Course-details.component.ts: This file is the component responsible for displaying the details of a specific course. It fetches the course details from the CourseService.
+
+15. Course-list.component.spec.ts: This file contains unit tests for the CourseListComponent.
+
+16. Course-list.component.ts: This file is the component responsible for displaying a list of available courses. It fetches the courses from the CourseService and handles user interactions such as clicking on a course to view its details or registering for a course.
+
+17. Course.ts: This file defines the Course interface, which represents the structure of a course.
+
+18. User.ts: This file defines the User interface, which represents the structure of a user.
+
+19. Register.component.spec.ts: This file contains unit tests for the RegisterComponent.
+
+20. Register.component.ts: This file is the component responsible for registering a user for a course. It receives the course ID from the URL and submits the registration data to the UserService.
+
+21. Course.service.spec.ts: This file contains unit tests for the CourseService.
+
+22. Course.service.ts: This file is the Angular service responsible for fetching course data from the backend.
+
+23. User.service.spec.ts: This file contains unit tests for the UserService.
+
+24. User.service.ts: This file is the Angular service responsible for handling user-related operations, such as registering and unregistering for courses.
+
+25. Unregister.component.spec.ts: This file contains unit tests for the UnregisterComponent.
+
+26. Unregister.component.ts: This file is the component responsible for unregistering a user from a course. It receives the course ID from the URL and sends the unregister request to the UserService.
+
+27. User-courses.component.spec.ts: This file contains unit tests for the UserCoursesComponent.
+
+28. User-courses.component.ts: This file is the component responsible for displaying the courses that a user has registered for. It fetches the user's courses from the UserService.
+
+29. Index.html: This file is the main HTML file for the Angular application. It includes the app-root component.
+
+30. App.component.html: This file is the template for the App component. It displays the title and includes the router-outlet element for rendering the selected component based on the current URL.
+
+31. Course-details.component.html: This file is the template for the Course-details component. It displays the details of a specific course.
+
+32. Course-list.component.html: This file is the template for the Course-list component. It displays a list of available courses.
+
+33. Register.component.html: This file is the template for the Register component. It displays the registration form for a course.
+
+34. Unregister.component.html: This file is the template for the Unregister component. It displays the confirmation message for unregistering from a course.
+
+35. User-courses.component.html: This file is the template for the User-courses component. It displays the courses that a user has registered for.
+
+36. Application.properties: This file contains the configuration properties for the Spring Boot application, such as the database connection details.
+
+37. SkischoolApplication.java: This file is the entry point of the Spring Boot application. It sets up the application and configures CORS to allow requests from the Angular frontend.
+
+38. Course.java: This file is the domain class for a course. It defines the properties of a course and their getters and setters.
+
+39. CourseRepository.java: This file is the repository interface for the Course entity. It provides CRUD operations for the Course entity.
+
+40. CourseManagement.java: This file is the logic class for managing courses. It interacts with the CourseRepository to perform business operations related to courses.
+
+41. CourseService.java: This file is the REST controller for handling requests related to courses. It maps the requested URLs to specific methods in the CourseManagement class.
+
+42. Member.java: This file is the domain class for a member/user. It defines the properties of a member/user and their getters and setters.
+
+43. MemberRepository.java: This file is the repository interface for the Member entity. It provides CRUD operations for the Member entity.
+
+44. MemberManagement.java: This file is the logic class for managing members/users. It interacts with the MemberRepository to perform business operations related to members/users.
+
+45. MemberService.java: This file is the REST controller for handling requests related to members/users. It maps the requested URLs to specific methods in the MemberManagement class.
+
+46. CourseRegistration.java: This file is the domain class for a course registration. It represents the relationship between a member and a course.
+
+47. CourseRegistrationRepository.java: This file is the repository interface for the CourseRegistration entity. It provides methods for finding registrations by member or course.
+
+48. CourseRegistrationManagement.java: This file is the logic class for managing course registrations. It interacts with the CourseRegistrationRepository to perform business operations related to course registrations.
+
+49. CourseRegistrationService.java: This file is the REST controller for handling requests related to course registrations. It maps the requested URLs to specific methods in the CourseRegistrationManagement class.
+
+50. SkischoolApplicationTests.java: This file contains unit tests for the SkischoolApplication class.
+
+Suggestions for improvement:
+
+1. Add error handling: It would be beneficial to add error handling in both the frontend and backend to handle potential errors during API requests and display relevant error messages to the user.
+
+2. Add authentication and authorization: Currently, the application does not have any authentication or authorization mechanisms. Adding user authentication and authorization can provide better security and control over user access to certain resources.
+
+3. Implement search and filtering: It would be useful to implement search and filtering functionality in the frontend to allow users to search for courses based on specific criteria, such as location or duration.
+
+4. Add pagination: If the number of courses or user registrations becomes large, implementing pagination in the backend and frontend can improve performance and user experience.
+
+5. Improve error handling and validation: The current implementation does not handle validation errors or provide meaningful error messages to the user. Adding input validation and improving error handling can enhance the user experience.
+
+6. Add tests: Although some unit tests are already provided, adding more test coverage for all components, services, and backend logic can help ensure the reliability and correctness of the application.
+
+7. Improve code organization: In the frontend, consider reorganizing the code into separate directories for components, services, models, etc., to follow a more modular structure. In the backend, consider separating domain, logic, and service classes into separate packages for better organization and maintainability.
+
+Overall, the project provides a basic implementation of a skiing school web application. With the suggested improvements, it can become a more robust and user-friendly application.

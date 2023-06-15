@@ -1,0 +1,58 @@
+Project Overview:
+The goal of this project is to create a Ski School application, which allows users to view and register for various ski courses. The application consists of a frontend and backend.
+
+Main Components:
+1. Frontend: The frontend is developed using Angular, a popular JavaScript framework for building web applications. It includes multiple components, services, and models to handle different aspects of the application, such as displaying the list of courses, registering for a course, displaying course details, and managing user courses.
+
+2. Backend: The backend is developed using Spring Boot, a Java framework for building enterprise applications. It includes multiple classes to handle database operations, business logic, and RESTful API endpoints. The backend manages the storage and retrieval of course and user data, as well as the course registration process.
+
+Detailed File Analysis:
+1. Frontend Files
+- app-routing.module.ts: This file defines the routing configuration for the frontend application, mapping URLs to specific components.
+- app.component.css: This file contains the stylesheet for the root component of the application.
+- app.component.html: This file contains the HTML template for the root component of the application.
+- app.component.ts: This file contains the TypeScript code for the root component of the application.
+- app.module.ts: This file defines the main module of the application, where components, services, and other dependencies are declared.
+- course-details.component.css: This file contains the stylesheet for the course details component.
+- course-details.component.html: This file contains the HTML template for the course details component.
+- course-details.component.ts: This file contains the TypeScript code for the course details component, which fetches and displays details of a specific course.
+- course-list.component.css: This file contains the stylesheet for the course list component.
+- course-list.component.html: This file contains the HTML template for the course list component, which displays a list of all available courses.
+- course-list.component.ts: This file contains the TypeScript code for the course list component, which fetches and displays the list of courses.
+- models/course.ts: This file defines the Course interface, which represents the structure of a course object.
+- models/user.ts: This file defines the User interface, which represents the structure of a user object.
+- register.component.css: This file contains the stylesheet for the register component.
+- register.component.html: This file contains the HTML template for the register component, which registers a user for a specific course.
+- register.component.ts: This file contains the TypeScript code for the register component, which handles the registration process.
+- course.service.spec.ts: This file contains the unit tests for the course service.
+- course.service.ts: This file contains the implementation of the course service, which handles API requests to fetch courses.
+- user.service.spec.ts: This file contains the unit tests for the user service.
+- user.service.ts: This file contains the implementation of the user service, which handles API requests related to user registration, course enrollment, and cancellation.
+- unregister.component.css: This file contains the stylesheet for the unregister component.
+- unregister.component.html: This file contains the HTML template for the unregister component, which cancels a user's registration for a course.
+- unregister.component.ts: This file contains the TypeScript code for the unregister component, which handles the cancellation process.
+- user-courses.component.css: This file contains the stylesheet for the user courses component.
+- user-courses.component.html: This file contains the HTML template for the user courses component, which displays the courses that a user is registered for.
+- user-courses.component.ts: This file contains the TypeScript code for the user courses component, which fetches and displays the user's course registrations.
+
+2. Backend Files
+- SkischoolApplication.java: This file is the entry point for the Spring Boot application. It contains the main method to start the application and configures CORS (Cross-Origin Resource Sharing) to allow requests from the Angular frontend.
+- Course.java: This file defines the Course entity, which represents a ski course in the database. It includes properties such as the course name, description, duration, and start time.
+- CourseRepository.java: This file defines the CourseRepository interface, which extends CrudRepository and provides methods for performing database operations on courses.
+- CourseManagement.java: This file defines the CourseManagement class, which contains business logic methods for managing courses.
+- CourseService.java: This file is the REST controller for handling course-related requests. It includes endpoints for retrieving all courses and adding a new course.
+- Member.java: This file defines the Member entity, which represents a user of the ski school application. It includes properties such as the member's username, password, first name, last name, and email.
+- MemberRepository.java: This file defines the MemberRepository interface, which extends JpaRepository and provides methods for performing database operations on members.
+- MemberManagement.java: This file defines the MemberManagement class, which contains business logic methods for managing members.
+- MemberService.java: This file is the REST controller for handling member-related requests. It includes endpoints for retrieving all members and creating a new member.
+- CourseRegistration.java: This file defines the CourseRegistration entity, which represents a registration of a member for a course. It includes references to the member and course entities.
+- CourseRegistrationRepository.java: This file defines the CourseRegistrationRepository interface, which extends JpaRepository and provides methods for performing database operations on course registrations.
+- CourseRegistrationManagement.java: This file defines the CourseRegistrationManagement class, which contains business logic methods for managing course registrations.
+- CourseRegistrationService.java: This file is the REST controller for handling course registration-related requests. It includes endpoints for retrieving all course registrations and registering a member for a course.
+
+Suggestions for Missing Items:
+Based on the given files, it appears that the project is missing the following components:
+- Authentication and authorization mechanisms: There are no files or services related to user authentication and authorization. It is recommended to implement authentication and authorization to ensure secure access to the application and its resources.
+
+Errors and Design Choices:
+Based on the provided code snippets, I did not find any specific errors or design choices that need immediate attention. However, further analysis may be required to determine if there are any potential issues or areas for improvement.
