@@ -107,3 +107,5 @@ overview Frontend
 |           user-courses.component.spec.ts
 |           user-courses.component.ts
 
+Skischule Problembeschreibung
+https://hessenbox-a10.rz.uni-frankfurt.de/getlink/fiWKSpF5eLRDB8oSyPhgnw/R4_Fachliche_Informationen%20%283%29.doc
